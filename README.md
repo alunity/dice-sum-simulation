@@ -1,1 +1,1 @@
-# normal-distribution
+# binomial-distribution
