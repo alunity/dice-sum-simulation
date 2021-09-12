@@ -1,1 +1,1 @@
-# binomial-distribution
+# dice-sum-simulation
