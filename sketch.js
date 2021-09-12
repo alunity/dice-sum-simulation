@@ -10,10 +10,9 @@ function dice() {
   return Math.floor(Math.random() * (6 - 1 + 1)) + 1;
 }
 
-class normalDistro {
+class diceSim {
   constructor(throws, dices) {
     this.init(throws, dices);
-    console.log(this.results);
   }
 
   init(throws, dices) {
@@ -63,6 +62,37 @@ class normalDistro {
       let yPos = (height / 10) * 9 - heightOfBar;
       rect(width / 10 + widthOfBar * i, yPos, widthOfBar, heightOfBar);
     }
+    this.axisLabels();
+  }
+
+  axisLabels() {
+    let xAxisValues = Object.keys(this.results);
+    xAxisValues.sort((firstEl, secondEl) => secondEl - firstEl);
+    if ((xAxisValues.length / 2) % 1 != 0 || this.dices > 10) {
+      this.axisLabel(Math.floor(xAxisValues.length / 2));
+    } else {
+      this.axisLabel(xAxisValues.length / 2);
+      this.axisLabel(xAxisValues.length / 2 - 1);
+    }
+    this.axisLabel(Math.floor((xAxisValues.length / 4) * 3));
+    this.axisLabel(Math.floor(xAxisValues.length / 4));
+    this.axisLabel(Math.floor(xAxisValues.length - 1));
+    this.axisLabel(Math.floor(0));
+
+    // console.log(medianIndex);
+    // console.log(medianValue);
+  }
+
+  axisLabel(index) {
+    let xAxisValues = Object.keys(this.results);
+    xAxisValues.sort((firstEl, secondEl) => firstEl - secondEl);
+    let value = xAxisValues[index];
+    let yPos = (height / 10) * 9.2;
+    let xPos =
+      width / 10 + this.dimensions[0] * index + this.dimensions[0] * 0.5;
+    fill("black");
+    textAlign(CENTER, CENTER);
+    text(value, xPos, yPos);
   }
 }
 
@@ -74,7 +104,7 @@ function setup() {
   var canvas = createCanvas(windowWidth * 0.8, windowHeight * 0.8);
   canvas.parent("sketch-holder");
 
-  app = new normalDistro(THROWS, DICES);
+  app = new diceSim(THROWS, DICES);
 }
 
 function draw() {
