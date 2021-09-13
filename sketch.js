@@ -63,33 +63,58 @@ class diceSim {
       rect(width / 10 + widthOfBar * i, yPos, widthOfBar, heightOfBar);
     }
     this.axisLabels();
+    fill("black");
+    textAlign(CENTER, CENTER);
+    text("Sum of " + dices + " dices", (width / 10) * 5, (height / 10) * 9.5);
+
+    text("Frequency", (width / 10) * 0.65, (height / 10) * 5);
   }
 
   axisLabels() {
     let xAxisValues = Object.keys(this.results);
-    xAxisValues.sort((firstEl, secondEl) => secondEl - firstEl);
     if ((xAxisValues.length / 2) % 1 != 0 || this.dices > 10) {
-      this.axisLabel(Math.floor(xAxisValues.length / 2));
+      this.xAxisLabel(Math.floor(xAxisValues.length / 2));
     } else {
-      this.axisLabel(xAxisValues.length / 2);
-      this.axisLabel(xAxisValues.length / 2 - 1);
+      this.xAxisLabel(xAxisValues.length / 2);
+      this.xAxisLabel(xAxisValues.length / 2 - 1);
     }
-    this.axisLabel(Math.floor((xAxisValues.length / 4) * 3));
-    this.axisLabel(Math.floor(xAxisValues.length / 4));
-    this.axisLabel(Math.floor(xAxisValues.length - 1));
-    this.axisLabel(Math.floor(0));
+    this.xAxisLabel(Math.floor((xAxisValues.length / 4) * 3));
+    this.xAxisLabel(Math.floor(xAxisValues.length / 4));
+    this.xAxisLabel(Math.floor(xAxisValues.length - 1));
+    this.xAxisLabel(Math.floor(0));
+
+    this.yAxisLabel(1);
+    this.yAxisLabel(0);
+    this.yAxisLabel(0.5);
+    this.yAxisLabel(0.75);
+    this.yAxisLabel(0.25);
 
     // console.log(medianIndex);
     // console.log(medianValue);
   }
 
-  axisLabel(index) {
+  xAxisLabel(index) {
     let xAxisValues = Object.keys(this.results);
     xAxisValues.sort((firstEl, secondEl) => firstEl - secondEl);
     let value = xAxisValues[index];
     let yPos = (height / 10) * 9.2;
     let xPos =
       width / 10 + this.dimensions[0] * index + this.dimensions[0] * 0.5;
+    fill("black");
+    textAlign(CENTER, CENTER);
+    text(value, xPos, yPos);
+  }
+
+  yAxisLabel(percentage) {
+    let yAxisValues = Object.values(this.results);
+    yAxisValues.sort((firstEl, secondEl) => secondEl - firstEl);
+    let maxValue = yAxisValues[0];
+
+    let value = Math.round(maxValue * percentage);
+    let heightOfLabel = this.dimensions[1] * value;
+    let yPos = (height / 10) * 9 - heightOfLabel;
+    let xPos = width / 10 - 15;
+
     fill("black");
     textAlign(CENTER, CENTER);
     text(value, xPos, yPos);
