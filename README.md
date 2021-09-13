@@ -2,7 +2,7 @@
 
 A tool to visualise the probability distribution of dice.
 
-- Rolls `n` amount of dices and sums their results
+- Rolls `n` amount of dice and sums their results
 - This is then repeated `x` amount of times
 
 You can customize the values of `n` and `x` using the sliders.
