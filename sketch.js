@@ -65,7 +65,7 @@ class diceSim {
     this.axisLabels();
     fill("black");
     textAlign(CENTER, CENTER);
-    text("Sum of " + dices + " dices", (width / 10) * 5, (height / 10) * 9.5);
+    text("Sum of " + dices + " dice", (width / 10) * 5, (height / 10) * 9.5);
 
     text("Frequency", (width / 10) * 0.65, (height / 10) * 5);
   }
